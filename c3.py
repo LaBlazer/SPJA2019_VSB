@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 def my_avg(*args):
     avg = 0
     for arg in args:
