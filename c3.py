@@ -4,25 +4,25 @@ def my_avg(*args):
         if isinstance(arg, (int, float)):
             avg += arg
         else:
-            return "Invalid parameter"
+            return None
     return avg / len(args)
 
 def my_map(func, lst):
     if callable(func) and isinstance(lst, list):
         return [func(x) for x in lst]
     else:
-        return "Invlid parameter"
+        return None
 
 def divide(num, lst):
-    if isinstance(num, (int, float)):
-        return my_map(lambda x: x // num if isinstance(x, (int, float)) else "Invalid parameter", lst)
+    if isinstance(num, (int, float)) and all(isinstance(i, (int, float)) for i in lst):
+        return my_map(lambda x: x // num, lst)
     else:
-        return "Invalid parameter"
+        return None
 
 def process_numbers(filename):
     prices = {}
-    with open(filename, "rt") as f:
-        calls = [l.rstrip().split(",") for l in f if l]
+    with open(filename, "rt") as file:
+        calls = [line.rstrip().split(",") for line in file if line]
         for callee, caller, price in calls:
             if caller not in prices:
                 prices[caller] = {}
