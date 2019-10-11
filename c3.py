@@ -8,10 +8,7 @@ def my_avg(*args):
     return avg / len(args)
 
 def my_map(func, lst):
-    if callable(func) and isinstance(lst, list):
-        return [func(x) for x in lst]
-    else:
-        return None
+    return [func(x) for x in lst] if callable(func) and isinstance(lst, list) else None
 
 def divide(num, lst):
     if isinstance(num, (int, float)) and all(isinstance(i, (int, float)) for i in lst):
